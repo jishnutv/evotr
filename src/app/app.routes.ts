@@ -4,13 +4,14 @@ import { RegisterComponent } from './pages/register/register.component';
 import { HomeComponent } from './pages/home/home.component';
 import { MainComponent } from './layouts/main/main.component';
 import { ProfileComponent } from './pages/profile/profile.component';
+import { CandidatesComponent } from './pages/candidates/candidates.component';
 
 export const routes: Routes = [
-  {
-    path: '',
-    redirectTo: 'home',
-    pathMatch: 'full',
-  },
+  // {
+  //   path: '',
+  //   redirectTo: 'home',
+  //   pathMatch: 'full',
+  // },
   {
     path: '',
     component: MainComponent,
@@ -18,6 +19,15 @@ export const routes: Routes = [
       {
         path: 'home',
         component: HomeComponent
+      },
+      {
+        path: 'home',
+        children: [
+          {
+            path: 'candidates',
+            component: CandidatesComponent
+          }
+        ]
       },
       {
         path: 'profile',
