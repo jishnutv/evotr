@@ -1,0 +1,12 @@
+.align-items-c {
+  align-items: center;
+}
+
+@media (max-width: 576px) {
+  .align-items-c {
+    align-items: flex-start !important;
+    .card {
+      margin-top: 30px;
+    }
+  }
+}
