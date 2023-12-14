@@ -1,0 +1,21 @@
+<div class="main-wrapper pt-5">
+  <div class="container mb-5">
+    <div class="row h-100">
+      <div class="col-xl-3">
+        <div class="list-group">
+          <button class="list-group-item list-group-item-action" routerLink="profile" routerLinkActive="active"
+            ariaCurrentWhenActive="page">
+            My Profile
+          </button>
+          <button class="list-group-item list-group-item-action" routerLink="recent-votes" routerLinkActive="active"
+            ariaCurrentWhenActive="page">Recent Votes</button>
+          <button class="list-group-item list-group-item-action" routerLink="change-password" routerLinkActive="active"
+            ariaCurrentWhenActive="page">Change Password</button>
+        </div>
+      </div>
+      <div class="col-xl-9 h-100">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+  </div>
+</div>

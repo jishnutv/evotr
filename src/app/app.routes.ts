@@ -3,15 +3,15 @@ import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { HomeComponent } from './pages/home/home.component';
 import { MainComponent } from './layouts/main/main.component';
-import { ProfileComponent } from './pages/profile/profile.component';
 import { CandidatesComponent } from './pages/candidates/candidates.component';
+import { MyAccountComponent } from './pages/my-account/my-account.component';
 
 export const routes: Routes = [
-  // {
-  //   path: '',
-  //   redirectTo: 'home',
-  //   pathMatch: 'full',
-  // },
+  {
+    path: '',
+    redirectTo: 'home',
+    pathMatch: 'full',
+  },
   {
     path: '',
     component: MainComponent,
@@ -30,8 +30,8 @@ export const routes: Routes = [
         ]
       },
       {
-        path: 'profile',
-        component: ProfileComponent
+        path: 'my-account',
+        loadChildren: () => import('../app/pages/my-account/my-account.routes').then((m) => m.routes),
       }
     ]
   },
