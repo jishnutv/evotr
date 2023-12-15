@@ -1,27 +1,51 @@
 <div class="row m-0 p-0 vh-100 align-items-c justify-content-center">
   <div class="col-xl-3 col-lg-4 col-md-6 col-sm-8 col-12">
-      <div class="card">
-        <div class="card-header py-3 text-center">
-          <h4 class="card-title">Login</h4>
-        </div>
-        <div class="card-body">
-          <form action="">
-            <div class="form-group mb-3">
-              <label class="form-label" for="email">Email</label>
-              <input type="email" id="email" class="form-control form-control-lg">
-            </div>
-            <div class="form-group mb-4">
-              <label for="password" class="form-label">Password</label>
-              <input type="password" id="password" class="form-control form-control-lg">
-            </div>
-            <div class="d-grid mb-4">
-              <button routerLink="/home" class="btn btn-primary btn-lg" type="submit">Login</button>
-            </div>
-          </form>
-        </div>
-        <div class="card-footer py-3 text-center">
-          <span>Don't have an account? <a routerLink="/register">Register</a></span>
-        </div>
+    <div class="card">
+      <div class="card-header py-3 text-center">
+        <h4 class="card-title">Login</h4>
       </div>
+      <div class="card-body">
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+          <div class="form-group mb-3">
+            <label class="form-label" for="email">Email</label>
+            <input type="email" id="email" formControlName="email" [class.is-valid]="loginForm.get('email')?.valid && 
+                (loginForm.get('email')?.dirty || loginForm.get('email')?.touched)" [class.is-invalid]="loginForm.get('email')?.invalid && 
+                (loginForm.get('email')?.dirty || loginForm.get('email')?.touched)"
+              class="form-control form-control-lg">
+            @if (loginForm.get('email')?.hasError('required')) {
+            <div class="invalid-feedback">
+              This field is required.
+            </div>
+            }@else if(loginForm.get('email')?.hasError('email')) {
+            <div class="invalid-feedback">
+              Invalid email address
+            </div>
+            }
+          </div>
+          <div class="form-group mb-4">
+            <label for="password" class="form-label">Password</label>
+            <input type="password" id="password" formControlName="password" [class.is-valid]="loginForm.get('password')?.valid && 
+              (loginForm.get('password')?.dirty || loginForm.get('password')?.touched)" [class.is-invalid]="loginForm.get('password')?.invalid && 
+              (loginForm.get('password')?.dirty || loginForm.get('password')?.touched)"
+              class="form-control form-control-lg">
+            @if (loginForm.get('password')?.hasError('required')) {
+            <div class="invalid-feedback">
+              This field is required.
+            </div>
+            }@else if(loginForm.get('password')?.hasError('minlength')) {
+            <div class="invalid-feedback">
+              Password must be at least 6 characters
+            </div>
+            }
+          </div>
+          <div class="d-grid mb-4">
+            <button class="btn btn-primary btn-lg" type="submit">Login</button>
+          </div>
+        </form>
+      </div>
+      <div class="card-footer py-3 text-center">
+        <span>Don't have an account? <a routerLink="/register">Register</a></span>
+      </div>
+    </div>
   </div>
 </div>
