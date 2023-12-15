@@ -5,6 +5,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { MainComponent } from './layouts/main/main.component';
 import { CandidatesComponent } from './pages/candidates/candidates.component';
 import { MyAccountComponent } from './pages/my-account/my-account.component';
+import { AdminComponent } from './layouts/admin/admin.component';
 
 export const routes: Routes = [
   {
@@ -34,6 +35,11 @@ export const routes: Routes = [
         loadChildren: () => import('../app/pages/my-account/my-account.routes').then((m) => m.routes),
       }
     ]
+  },
+  {
+    path: 'admin',
+    component: AdminComponent,
+    loadChildren: () => import('../app/pages/admin/admin.routes').then((m) => m.routes),
   },
   {
     path: 'login',

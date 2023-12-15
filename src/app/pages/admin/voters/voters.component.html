@@ -1,0 +1,40 @@
+<div class="container">
+  <nav aria-label="breadcrumb" class="py-4">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a routerLink="/admin/dashboard">Admin</a></li>
+      <li class="breadcrumb-item" routerLink="/admin/voters" routerLinkActive="active">Voters</li>
+    </ol>
+  </nav>
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">Voter ID</th>
+        <th scope="col">Phone</th>
+        <th scope="col">Email</th>
+        <th scope="col">Profile status</th>
+        <th scope="col">Account status</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (item of voters; track $index) {
+      <tr>
+        <th scope="row">{{ $index + 1 }}</th>
+        <td>{{ item.fname + ' ' + item.lname }}</td>
+        <td>{{ item.vid }}</td>
+        <td>{{ item.phone }}</td>
+        <td>{{ item.email }}</td>
+        <td>
+          @if (item.profile_completed) {
+            <span class="text-success">Completed</span>
+          }@else {
+            <span class="text-danger">Not completed</span>
+          }
+        </td>
+        <td class="text-capitalize" [class]="item.status === 'active' ? 'text-success' : 'text-danger'">{{ item.status }}</td>
+      </tr>
+      }
+    </tbody>
+  </table>
+</div>

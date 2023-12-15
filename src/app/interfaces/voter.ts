@@ -10,4 +10,5 @@ export interface Voter {
   created_at: string
   updated_at: string
   profile_completed: boolean
+  status: string
 }
