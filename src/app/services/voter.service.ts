@@ -12,8 +12,8 @@ export class VoterService {
 
   url = 'http://127.0.0.1:8000/api/v1';
 
-  getVoter(): Observable<VoterResponse> {
-    return this.http.get<VoterResponse>(`${this.url}/voters/1`).pipe(
+  getVoter(id: string): Observable<VoterResponse> {
+    return this.http.get<VoterResponse>(`${this.url}/voters/${id}`).pipe(
       catchError((error: HttpErrorResponse) => {
         throw new Error(error.statusText);
       })
@@ -22,6 +22,23 @@ export class VoterService {
 
   regVoter(data: { email: string, password: string }): Observable<VoterResponse> {
     return this.http.post<VoterResponse>(`${this.url}/voter-register`, data).pipe(
+      catchError((error: HttpErrorResponse) => {
+        throw error;
+      })
+    );
+  }
+
+  updateVoter(data: { fname: string, lname: string, phone: string }, id: string): Observable<VoterResponse> {
+    return this.http.put<VoterResponse>(`${this.url}/update-voter/${id}`, data).pipe(
+      catchError((error: HttpErrorResponse) => {
+        throw error;
+      })
+    );
+  }
+
+  changePassword(data: { password: string, current_password: string }, id: string): Observable<VoterResponse> {
+    console.log(`${this.url}/change-password/${id}`);
+    return this.http.put<VoterResponse>(`${this.url}/change-password/${id}`, data).pipe(
       catchError((error: HttpErrorResponse) => {
         throw error;
       })

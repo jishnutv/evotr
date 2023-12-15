@@ -1,7 +1,9 @@
 <div class="card h-100">
   <div class="card-header mb-3">
     <h5 class="card-title float-start">Profile</h5>
+    @if (voter) {
     <a [routerLink]="'/my-account/edit-profile/' + voter.id" class="btn btn-sm btn-primary float-end">Edit profile</a>
+    }
   </div>
   <div class="card-body">
     @if(isLoading){
@@ -16,7 +18,8 @@
       <div class="col-lg-5 col-md-6">
         @if(!voter.profile_completed){
         <div class="alert alert-danger text-center" role="alert">
-          Please complete your profile <a [routerLink]="'/my-account/edit-profile/' + voter.id" class="btn btn-sm btn-outline-danger ms-2">Edit</a>
+          Please complete your profile <a [routerLink]="'/my-account/edit-profile/' + voter.id"
+            class="btn btn-sm btn-outline-danger ms-2">Edit</a>
         </div>
         }
         @if (!voter.email_verified_at) {

@@ -19,11 +19,10 @@ export class ProfileComponent implements OnInit {
   }
 
   getVoter() {
-    this.voterService.getVoter().subscribe({
+    this.voterService.getVoter('1').subscribe({
       next: (result) => {
         this.isLoading = false;
         this.voter = result.data
-        console.log(result.data)
       },
       error: (error) => console.log(error.message),
     });

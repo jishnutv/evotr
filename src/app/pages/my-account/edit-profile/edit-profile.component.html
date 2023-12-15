@@ -3,8 +3,8 @@
     <h5 class="card-title float-start">Edit Profile</h5>
   </div>
   <div class="card-body">
-    <div class="row">
-      <div class="col">
+    <div class="row mb-3 justify-content-center">
+      <div class="col-lg-6">
         <form [formGroup]="editForm" (ngSubmit)="onSubmit()">
           <div class="form-group mb-3">
             <label class="form-label" for="fname">First Name</label>
@@ -58,6 +58,9 @@
               Invalid phone number
             </div>
             }
+          </div>
+          <div class="text-end">
+            <button [disabled]="!editForm.valid || isLoading" type="submit" class="btn btn-primary">Submit</button>
           </div>
         </form>
       </div>

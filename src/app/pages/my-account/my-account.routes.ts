@@ -29,7 +29,7 @@ export const routes: Routes = [
         component: RecentVotesComponent
       },
       {
-        path: 'change-password',
+        path: 'change-password/:id',
         component: ChangePasswordComponent
       }
     ]
