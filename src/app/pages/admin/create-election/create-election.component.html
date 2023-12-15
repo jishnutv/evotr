@@ -1,0 +1,40 @@
+<div class="container">
+  <nav aria-label="breadcrumb" class="py-4">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a routerLink="/admin/dashboard">Admin</a></li>
+      <li class="breadcrumb-item"><a routerLink="/admin/elections">Elections</a></li>
+      <li class="breadcrumb-item" routerLink="/admin/elections/create" routerLinkActive="active">Create</li>
+    </ol>
+  </nav>
+  <div class="row justify-content-center">
+    <div class="col-xl-4 col-lg-5 col-md-6">
+      <div class="card">
+        <div class="card-header">
+          <h5 class="card-title">Create New Election</h5>
+        </div>
+        <div class="card-body">
+          <form [formGroup]="electionForm" (ngSubmit)="onSubmit()">
+            <div class="form-group mb-3">
+              <label class="form-label" for="title">Title</label>
+              <input type="text" id="title" formControlName="title" [class.is-valid]="electionForm.get('title')?.valid && 
+                (electionForm.get('title')?.dirty || electionForm.get('title')?.touched)" [class.is-invalid]="electionForm.get('title')?.invalid && 
+                (electionForm.get('title')?.dirty || electionForm.get('title')?.touched)" class="form-control form-control-lg">
+              @if (electionForm.get('title')?.hasError('required')) {
+              <div class="invalid-feedback">
+                This field is required.
+              </div>
+              }@else if(electionForm.get('title')?.hasError('minlength')) {
+              <div class="invalid-feedback">
+                Minimum 3 characters required
+              </div>
+              }
+            </div>
+            <div class="text-end">
+              <button [disabled]="!electionForm.valid || isLoading" type="submit" class="btn btn-success">Submit</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

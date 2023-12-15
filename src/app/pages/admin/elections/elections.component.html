@@ -6,7 +6,7 @@
     </ol>
   </nav>
   <div class="mb-4">
-    <button class="btn btn-success">Create</button>
+    <button routerLink="/admin/elections/create" class="btn btn-success">Create</button>
   </div>
   <table class="table table-bordered">
     <thead>
@@ -28,9 +28,9 @@
         <td>{{ item.candidates.length }}</td>
         <td class="text-capitalize" [class]="item.status === 'active' ? 'text-success' : 'text-danger'">{{ item.status
           }}</td>
-        <td class="text-center"><button class="btn btn-success btn-sm">View</button></td>
+        <td class="text-center"><button [routerLink]="'/admin/elections/' + item.id" class="btn btn-success btn-sm">View</button></td>
         <td class="text-center"><button class="btn btn-warning btn-sm">Edit</button></td>
-        <td class="text-center"><button class="btn btn-danger btn-sm">Delete</button></td>
+        <td class="text-center"><button (click)="deleteElection(item.id)" class="btn btn-danger btn-sm">Delete</button></td>
       </tr>
       }
     </tbody>

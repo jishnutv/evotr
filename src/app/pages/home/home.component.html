@@ -1,24 +1,26 @@
 <div class="main-wrapper pt-5">
   <div class="container">
     <div class="row">
+      <h1 class="display-6 mb-5">Elections</h1>
+      @for (item of elections; track $index) {
       <div class="col-xxl-3">
-        <h1 class="display-6 mb-5">Elections</h1>
         <div class="card">
-          <img src="https://picsum.photos/id/237/400/200" class="card-img-top" alt="...">
+          <!-- <img src="https://picsum.photos/id/237/400/200" class="card-img-top" alt="..."> -->
           <div class="card-body">
-            <h6 class="card-title">Card title</h6>
+            <h6 class="card-title">{{ item.title }}</h6>
           </div>
           <ul class="list-group list-group-flush">
-            <li class="list-group-item">An item</li>
-            <li class="list-group-item">A second item</li>
+            <li class="list-group-item text-capitalize">{{ item.status }}</li>
+            <li class="list-group-item">Candidates: {{ item.candidates.length }}</li>
           </ul>
           <div class="card-body">
             <div class="d-grid">
-              <a routerLink="/home/candidates" class="btn btn-sm btn-success">View Ballot</a>
+              <a routerLink="/home/candidates" class="btn btn-sm btn-success">View Candidates</a>
             </div>
           </div>
         </div>
       </div>
+      }
     </div>
   </div>
 </div>
