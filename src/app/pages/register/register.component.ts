@@ -1,13 +1,20 @@
 import { Component } from '@angular/core';
-import { AbstractControl, FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import {
+  AbstractControl,
+  FormBuilder,
+  FormGroup,
+  FormsModule,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { VoterService } from '../../services/voter.service';
-import { HttpErrorResponse } from '@angular/common/http';
+import { ToastrService } from 'ngx-toastr';
 import { ApiErrorResponse } from '../../interfaces/api-error-response';
 
 interface RegForm {
-  email: string,
-  password: string
+  email: string;
+  password: string;
 }
 
 @Component({
@@ -15,14 +22,19 @@ interface RegForm {
   standalone: true,
   imports: [RouterLink, FormsModule, ReactiveFormsModule],
   templateUrl: './register.component.html',
-  styleUrl: './register.component.scss'
+  styleUrl: './register.component.scss',
 })
 export class RegisterComponent {
   regForm: FormGroup;
   isLoading: boolean = false;
   data!: RegForm;
 
-  constructor(private formBuilder: FormBuilder, private voterService: VoterService, private router: Router) {
+  constructor(
+    private formBuilder: FormBuilder,
+    private voterService: VoterService,
+    private toastr: ToastrService,
+    private router: Router
+  ) {
     this.regForm = this.formBuilder.group(
       {
         email: ['', [Validators.required, Validators.email]],
@@ -30,13 +42,16 @@ export class RegisterComponent {
         confirm_password: ['', [Validators.required]],
       },
       {
-        validators: this.passwordMatchValidator
+        validators: this.passwordMatchValidator,
       }
     );
   }
 
   passwordMatchValidator(control: AbstractControl) {
-    return control.get('password')?.value === control.get('confirm_password')?.value ? null : { mismatch: true }
+    return control.get('password')?.value ===
+      control.get('confirm_password')?.value
+      ? null
+      : { mismatch: true };
   }
 
   onSubmit() {
@@ -45,14 +60,14 @@ export class RegisterComponent {
     this.voterService.regVoter(this.data).subscribe({
       next: (result) => {
         this.isLoading = false;
-        this.regForm.reset()
+        this.regForm.reset();
+        this.toastr.success('Congratulations! Your registration was successful.');
         this.router.navigate(['/login']);
       },
       error: (e) => {
         this.isLoading = false;
-        const errRes:ApiErrorResponse = e.error;
-
-        alert(errRes.error.message);
+        const errRes: ApiErrorResponse = e.error;
+        this.toastr.error(errRes.error.message);
       },
     });
   }
