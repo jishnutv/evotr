@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { VoterService } from '../../../services/voter.service';
 import { Voter } from '../../../interfaces/voter';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-profile',
   standalone: true,
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.scss'
 })

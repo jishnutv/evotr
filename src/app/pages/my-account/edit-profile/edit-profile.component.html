@@ -1,0 +1,66 @@
+<div class="card">
+  <div class="card-header">
+    <h5 class="card-title float-start">Edit Profile</h5>
+  </div>
+  <div class="card-body">
+    <div class="row">
+      <div class="col">
+        <form [formGroup]="editForm" (ngSubmit)="onSubmit()">
+          <div class="form-group mb-3">
+            <label class="form-label" for="fname">First Name</label>
+            <input type="text" id="fname" formControlName="fname" [class.is-valid]="editForm.get('fname')?.valid && 
+              (editForm.get('fname')?.dirty || editForm.get('fname')?.touched)" [class.is-invalid]="editForm.get('fname')?.invalid && 
+              (editForm.get('fname')?.dirty || editForm.get('fname')?.touched)" class="form-control form-control-lg">
+            @if (editForm.get('fname')?.hasError('required')) {
+            <div class="invalid-feedback">
+              This field is required.
+            </div>
+            }@else if(editForm.get('fname')?.hasError('minlength')) {
+            <div class="invalid-feedback">
+              Minimum 3 characters required
+            </div>
+            }
+          </div>
+          <div class="form-group mb-3">
+            <label class="form-label" for="lname">Last Name</label>
+            <input type="text" id="lname" formControlName="lname" [class.is-valid]="editForm.get('lname')?.valid && 
+              (editForm.get('lname')?.dirty || editForm.get('lname')?.touched)" [class.is-invalid]="editForm.get('lname')?.invalid && 
+              (editForm.get('lname')?.dirty || editForm.get('lname')?.touched)" class="form-control form-control-lg">
+            @if (editForm.get('lname')?.hasError('required')) {
+            <div class="invalid-feedback">
+              This field is required.
+            </div>
+            }@else if(editForm.get('lname')?.hasError('minlength')) {
+            <div class="invalid-feedback">
+              Minimum 3 characters required
+            </div>
+            }
+          </div>
+          <div class="form-group mb-3">
+            <label class="form-label" for="phone">Phone</label>
+            <input type="text" id="phone" formControlName="phone" [class.is-valid]="editForm.get('phone')?.valid && 
+              (editForm.get('phone')?.dirty || editForm.get('phone')?.touched)" [class.is-invalid]="editForm.get('phone')?.invalid && 
+              (editForm.get('phone')?.dirty || editForm.get('phone')?.touched)" class="form-control form-control-lg">
+            @if (editForm.get('phone')?.hasError('required')) {
+            <div class="invalid-feedback">
+              This field is required.
+            </div>
+            }@else if(editForm.get('phone')?.hasError('pattern')) {
+            <div class="invalid-feedback">
+              Only numbers are allowed
+            </div>
+            }@else if(editForm.get('phone')?.hasError('minlength')) {
+            <div class="invalid-feedback">
+              Invalid phone number
+            </div>
+            }@else if(editForm.get('phone')?.hasError('maxlength')) {
+            <div class="invalid-feedback">
+              Invalid phone number
+            </div>
+            }
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

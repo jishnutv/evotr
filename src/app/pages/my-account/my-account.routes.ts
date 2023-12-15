@@ -3,6 +3,7 @@ import { MyAccountComponent } from "./my-account.component"
 import { ProfileComponent } from "./profile/profile.component"
 import { RecentVotesComponent } from "./recent-votes/recent-votes.component"
 import { ChangePasswordComponent } from "./change-password/change-password.component"
+import { EditProfileComponent } from "./edit-profile/edit-profile.component"
 
 
 export const routes: Routes = [
@@ -18,6 +19,10 @@ export const routes: Routes = [
       {
         path: 'profile',
         component: ProfileComponent
+      },
+      {
+        path: 'edit-profile/:id',
+        component: EditProfileComponent
       },
       {
         path: 'recent-votes',
