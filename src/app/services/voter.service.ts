@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, catchError } from 'rxjs';
+import { Observable, catchError, throwError } from 'rxjs';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { VoterResponse } from '../interfaces/voter-response';
 
@@ -15,8 +15,15 @@ export class VoterService {
   getVoter(): Observable<VoterResponse> {
     return this.http.get<VoterResponse>(`${this.url}/voters/1`).pipe(
       catchError((error: HttpErrorResponse) => {
-        console.error('Error fetching branches:', error);
         throw new Error(error.statusText);
+      })
+    );
+  }
+
+  regVoter(data: { email: string, password: string }): Observable<VoterResponse> {
+    return this.http.post<VoterResponse>(`${this.url}/voter-register`, data).pipe(
+      catchError((error: HttpErrorResponse) => {
+        throw error;
       })
     );
   }

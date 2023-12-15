@@ -2,6 +2,8 @@ export interface Voter {
   id: number
   fname: string
   lname: string
+  image: string,
+  vid: string,
   email: string
   phone: any
   email_verified_at: string | null

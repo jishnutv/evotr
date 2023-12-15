@@ -1,3 +1,5 @@
 .main-wrapper {
   min-height: calc(100vh - 168px);
+  display: flex;
+  align-items: stretch;
 }

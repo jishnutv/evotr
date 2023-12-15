@@ -14,12 +14,12 @@
     <div class="row justify-content-center">
       <div class="col-lg-5 col-md-6">
         @if(!voter.profile_completed){
-        <div class="alert alert-warning text-center" role="alert">
-          Please complete your profile <a class="btn btn-sm btn-outline-warning ms-2">Update</a>
+        <div class="alert alert-danger text-center" role="alert">
+          Please complete your profile <a class="btn btn-sm btn-outline-danger ms-2">Edit</a>
         </div>
         }
         @if (!voter.email_verified_at) {
-        <div class="alert alert-warning text-center" role="alert">
+        <div class="alert alert-danger text-center" role="alert">
           Please verify your email address
         </div>
         }
@@ -28,11 +28,11 @@
             <img src="https://picsum.photos/id/33/200/200" alt="">
           </div>
           <h5>{{ voter.fname && voter.lname ? voter.fname + ' ' + voter.lname : 'Name not available' }}</h5>
-          <p class="text-muted">VID5463443</p>
+          <p class="text-muted">{{ voter.vid }}</p>
           <ul class="list-group mb-3">
             <li class="list-group-item">{{ voter.email }}</li>
             <li class="list-group-item">{{ voter.phone ? voter.phone : 'No phone number' }}</li>
-            <li class="list-group-item">{{ voter.created_at }}</li>
+            <li class="list-group-item">Created {{ voter.created_at }}</li>
             <li class="list-group-item">Email Verified {{ voter.email_verified_at ? '✅' : '❌' }}</li>
             <li class="list-group-item">Profile Completed {{ voter.profile_completed ? '✅' : '❌' }}</li>
           </ul>
