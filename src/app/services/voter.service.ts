@@ -3,6 +3,8 @@ import { Observable, catchError, throwError } from 'rxjs';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { VoterResponse } from '../interfaces/voter-response';
 import { VotersResponse } from '../interfaces/voters-response';
+import { Vote } from '../interfaces/vote';
+import { VoteResponse } from '../interfaces/vote-response';
 
 @Injectable({
   providedIn: 'root'
@@ -50,6 +52,22 @@ export class VoterService {
     return this.http.put<VoterResponse>(`${this.url}/change-password/${id}`, data).pipe(
       catchError((error: HttpErrorResponse) => {
         throw error;
+      })
+    );
+  }
+
+  addVote(data: Vote): Observable<VoteResponse> {
+    return this.http.post<VoteResponse>(`${this.url}/create-vote`, data).pipe(
+      catchError((error: HttpErrorResponse) => {
+        throw error;
+      })
+    );
+  }
+
+  checkVote(eid: string, id: string): Observable<VoteResponse> {
+    return this.http.get<VoteResponse>(`${this.url}/check-vote/${eid}/${id}`).pipe(
+      catchError((error: HttpErrorResponse) => {
+        throw new Error(error.statusText);
       })
     );
   }

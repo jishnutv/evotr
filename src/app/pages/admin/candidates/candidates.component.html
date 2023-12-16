@@ -17,6 +17,7 @@
         <th scope="col">Phone</th>
         <th scope="col">Email</th>
         <th scope="col">Account status</th>
+        <th scope="col">Total votes</th>
       </tr>
     </thead>
     <tbody>
@@ -28,6 +29,7 @@
         <td>{{ item.email }}</td>
         <td class="text-capitalize" [class]="item.status === 'active' ? 'text-success' : 'text-danger'">{{ item.status
           }}</td>
+        <td>{{ item.total_votes }}</td>
       </tr>
       }
     </tbody>

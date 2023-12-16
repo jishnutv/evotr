@@ -16,7 +16,7 @@
           </ul>
           <div class="card-body">
             <div class="d-grid">
-              <a class="btn btn-sm btn-success">Vote</a>
+              <button [disabled]="isVoted" (click)="addVote(item.election.id, item.id)" class="btn btn-sm btn-success">{{ isVoted ? 'Already voted' : 'Vote' }}</button>
             </div>
           </div>
         </div>

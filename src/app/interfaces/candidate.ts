@@ -1,7 +1,7 @@
 import { Election } from "./election"
 
 export interface Candidate {
-  id: number
+  id: string
   fname: string
   lname: string
   image: string
@@ -10,5 +10,6 @@ export interface Candidate {
   created_at: string
   updated_at: string
   status: string
-  election: Election
+  election: Election,
+  total_votes: number
 }
