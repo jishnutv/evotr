@@ -1,0 +1,118 @@
+<div class="container">
+  <nav aria-label="breadcrumb" class="py-4">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a routerLink="/admin/dashboard">Admin</a></li>
+      <li class="breadcrumb-item" routerLink="/admin/elections" routerLinkActive="active">Elections</li>
+    </ol>
+  </nav>
+  <div class="row justify-content-center">
+    <div class="col-xl-4 col-lg-5 col-md-6">
+      <div class="card">
+        <div class="card-header">
+          <h5 class="card-title">Create New Candidate</h5>
+        </div>
+        <div class="card-body">
+          <form [formGroup]="candidateForm" (ngSubmit)="onSubmit()">
+            <div class="form-group mb-3">
+              <label class="form-label" for="election">Election</label>
+              <select class="form-select form-select-lg" id="election" formControlName="election_id" [class.is-valid]="candidateForm.get('election_id')?.valid && 
+              (candidateForm.get('election_id')?.dirty || candidateForm.get('election_id')?.touched)"
+                [class.is-invalid]="candidateForm.get('election_id')?.invalid && 
+              (candidateForm.get('election_id')?.dirty || candidateForm.get('election_id')?.touched)">
+                @for (item of elections; track $index) {
+                  <option selected disabled value="">Select one...</option>
+                  <option [value]="item.id">{{ item.title }}</option>
+                }
+              </select>
+              @if (candidateForm.get('fname')?.hasError('required')) {
+              <div class="invalid-feedback">
+                This field is required.
+              </div>
+              }@else if(candidateForm.get('fname')?.hasError('minlength')) {
+              <div class="invalid-feedback">
+                Minimum 3 characters required
+              </div>
+              }
+            </div>
+            <div class="form-group mb-3">
+              <label class="form-label" for="fname">First Name</label>
+              <input type="text" id="fname" formControlName="fname" [class.is-valid]="candidateForm.get('fname')?.valid && 
+                (candidateForm.get('fname')?.dirty || candidateForm.get('fname')?.touched)" [class.is-invalid]="candidateForm.get('fname')?.invalid && 
+                (candidateForm.get('fname')?.dirty || candidateForm.get('fname')?.touched)"
+                class="form-control form-control-lg">
+              @if (candidateForm.get('fname')?.hasError('required')) {
+              <div class="invalid-feedback">
+                This field is required.
+              </div>
+              }@else if(candidateForm.get('fname')?.hasError('minlength')) {
+              <div class="invalid-feedback">
+                Minimum 3 characters required
+              </div>
+              }
+            </div>
+            <div class="form-group mb-3">
+              <label class="form-label" for="lname">Last Name</label>
+              <input type="text" id="lname" formControlName="lname" [class.is-valid]="candidateForm.get('lname')?.valid && 
+                (candidateForm.get('lname')?.dirty || candidateForm.get('lname')?.touched)" [class.is-invalid]="candidateForm.get('lname')?.invalid && 
+                (candidateForm.get('lname')?.dirty || candidateForm.get('lname')?.touched)"
+                class="form-control form-control-lg">
+              @if (candidateForm.get('lname')?.hasError('required')) {
+              <div class="invalid-feedback">
+                This field is required.
+              </div>
+              }@else if(candidateForm.get('lname')?.hasError('minlength')) {
+              <div class="invalid-feedback">
+                Minimum 3 characters required
+              </div>
+              }
+            </div>
+            <div class="form-group mb-3">
+              <label class="form-label" for="email">Email</label>
+              <input type="email" id="email" formControlName="email" [class.is-valid]="candidateForm.get('email')?.valid && 
+                (candidateForm.get('email')?.dirty || candidateForm.get('email')?.touched)" [class.is-invalid]="candidateForm.get('email')?.invalid && 
+                (candidateForm.get('email')?.dirty || candidateForm.get('email')?.touched)"
+                class="form-control form-control-lg">
+              @if (candidateForm.get('email')?.hasError('required')) {
+              <div class="invalid-feedback">
+                This field is required.
+              </div>
+              }@else if(candidateForm.get('email')?.hasError('email')) {
+              <div class="invalid-feedback">
+                Invalid email address
+              </div>
+              }
+            </div>
+            <div class="form-group mb-3">
+              <label class="form-label" for="phone">Phone</label>
+              <input type="text" id="phone" formControlName="phone" [class.is-valid]="candidateForm.get('phone')?.valid && 
+                (candidateForm.get('phone')?.dirty || candidateForm.get('phone')?.touched)" [class.is-invalid]="candidateForm.get('phone')?.invalid && 
+                (candidateForm.get('phone')?.dirty || candidateForm.get('phone')?.touched)"
+                class="form-control form-control-lg">
+              @if (candidateForm.get('phone')?.hasError('required')) {
+              <div class="invalid-feedback">
+                This field is required.
+              </div>
+              }@else if(candidateForm.get('phone')?.hasError('pattern')) {
+              <div class="invalid-feedback">
+                Only numbers are allowed
+              </div>
+              }@else if(candidateForm.get('phone')?.hasError('minlength')) {
+              <div class="invalid-feedback">
+                Invalid phone number
+              </div>
+              }@else if(candidateForm.get('phone')?.hasError('maxlength')) {
+              <div class="invalid-feedback">
+                Invalid phone number
+              </div>
+              }
+            </div>
+            <div class="text-end">
+              <button [disabled]="!candidateForm.valid || isLoading" type="submit"
+                class="btn btn-success">Submit</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

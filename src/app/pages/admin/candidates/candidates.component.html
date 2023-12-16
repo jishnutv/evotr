@@ -6,5 +6,30 @@
       <li class="breadcrumb-item active">Candidates</li>
     </ol>
   </nav>
-  
+  <div class="mb-4">
+    <button routerLink="/admin/create-candidate" class="btn btn-success">Create</button>
+  </div>
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">Phone</th>
+        <th scope="col">Email</th>
+        <th scope="col">Account status</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (item of candidates; track $index) {
+      <tr>
+        <th scope="row">{{ $index + 1 }}</th>
+        <td>{{ item.fname + ' ' + item.lname }}</td>
+        <td>{{ item.phone }}</td>
+        <td>{{ item.email }}</td>
+        <td class="text-capitalize" [class]="item.status === 'active' ? 'text-success' : 'text-danger'">{{ item.status
+          }}</td>
+      </tr>
+      }
+    </tbody>
+  </table>
 </div>

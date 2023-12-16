@@ -21,4 +21,8 @@ export class AuthService {
       })
     );
   }
+
+  isAuthenticated(){
+    return localStorage.getItem('user_token') != null;
+  }
 }

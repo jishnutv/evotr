@@ -4,6 +4,7 @@ import { ElectionsComponent } from "./elections/elections.component";
 import { CandidatesComponent } from "./candidates/candidates.component";
 import { VotersComponent } from "./voters/voters.component";
 import { CreateElectionComponent } from "./create-election/create-election.component";
+import { CreateCandidateComponent } from "./create-candidate/create-candidate.component";
 
 export const routes: Routes = [
   {
@@ -26,6 +27,10 @@ export const routes: Routes = [
   {
     path: 'elections/:id',
     component: CandidatesComponent
+  },
+  {
+    path: 'create-candidate',
+    component: CreateCandidateComponent
   },
   {
     path: 'voters',

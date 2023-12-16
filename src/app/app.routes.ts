@@ -6,6 +6,8 @@ import { MainComponent } from './layouts/main/main.component';
 import { CandidatesComponent } from './pages/candidates/candidates.component';
 import { MyAccountComponent } from './pages/my-account/my-account.component';
 import { AdminComponent } from './layouts/admin/admin.component';
+import { authGuard } from './guards/auth.guard';
+import { noAuthGuard } from './guards/noauth.guard';
 
 export const routes: Routes = [
   {
@@ -16,10 +18,11 @@ export const routes: Routes = [
   {
     path: '',
     component: MainComponent,
+    canActivate: [authGuard],
     children: [
       {
         path: 'home',
-        component: HomeComponent
+        component: HomeComponent,
       },
       {
         path: 'home',
@@ -43,10 +46,12 @@ export const routes: Routes = [
   },
   {
     path: 'login',
-    component: LoginComponent
+    component: LoginComponent,
+    canActivate: [noAuthGuard]
   },
   {
     path: 'register',
-    component: RegisterComponent
+    component: RegisterComponent,
+    canActivate: [noAuthGuard]
   },
 ];
