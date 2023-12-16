@@ -1,5 +1,5 @@
 export interface Voter {
-  id: number
+  id: string
   fname: string
   lname: string
   image: string

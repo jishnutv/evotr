@@ -1,5 +1,27 @@
 <div class="main-wrapper pt-5">
   <div class="container">
-    <p>candidates works!</p>
+    <div class="row">
+      <h1 class="display-6 mb-5">Candidates</h1>
+      @for (item of candidates; track $index) {
+      <div class="col-xxl-3">
+        <div class="card">
+          <!-- <img src="https://picsum.photos/id/237/400/200" class="card-img-top" alt="..."> -->
+          <div class="card-body">
+            <h6 class="card-title">{{ item.fname + ' ' + item.lname }}</h6>
+          </div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item text-capitalize">Election: {{ item.election.title }}</li>
+            <li class="list-group-item text-capitalize">Email: {{ item.email }}</li>
+            <li class="list-group-item">Phone: {{ item.phone }}</li>
+          </ul>
+          <div class="card-body">
+            <div class="d-grid">
+              <a class="btn btn-sm btn-success">Vote</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      }
+    </div>
   </div>
 </div>

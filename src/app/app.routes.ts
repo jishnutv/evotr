@@ -28,7 +28,7 @@ export const routes: Routes = [
         path: 'home',
         children: [
           {
-            path: 'candidates',
+            path: 'election/:id',
             component: CandidatesComponent
           }
         ]

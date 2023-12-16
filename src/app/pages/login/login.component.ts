@@ -43,6 +43,7 @@ export class LoginComponent {
     this.authService.loginVoter(this.data).subscribe({
       next: (result) => {
         localStorage.setItem('user_token', result.access_token);
+        localStorage.setItem('user_id', result.data.id);
         this.isLoading = false;
         this.loginForm.reset();
         this.toastr.success('Login successful.');

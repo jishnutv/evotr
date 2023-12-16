@@ -1,3 +1,5 @@
+import { Election } from "./election"
+
 export interface Candidate {
   id: number
   fname: string
@@ -8,4 +10,5 @@ export interface Candidate {
   created_at: string
   updated_at: string
   status: string
+  election: Election
 }
